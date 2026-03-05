@@ -191,7 +191,8 @@ def collect_source_files(src_dir, extensions=None):
             parts = f.parts
             skip_dirs = {'node_modules', '.git', '__pycache__', '.venv', 'venv',
                          'dist', 'build', '.next', '.nuxt', 'vendor', '.idea',
-                         '.vscode', 'target', 'bin', 'obj', '.gradle'}
+                         '.vscode', 'target', 'bin', 'obj', '.gradle',
+                         'scripts', '软著申请', '软著申请材料', '.agents'}
             if not any(d in parts for d in skip_dirs):
                 files.append(f)
     return files
@@ -424,10 +425,6 @@ def main():
 
         rel_path = filepath.relative_to(Path(args.source_dir))
         lines = content.splitlines()
-
-        # 加入文件路径标记行
-        global_line += 1
-        all_lines.append((global_line, f"// ===== {rel_path} =====", file_idx))
 
         for line in lines:
             global_line += 1
